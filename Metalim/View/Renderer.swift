@@ -13,7 +13,8 @@ class Renderer: NSObject, MTKViewDelegate {
     var metalDevice: MTLDevice!
     var metalComandQueue: MTLCommandQueue!
     let pipelineState: MTLRenderPipelineState
-    let vertexBuffer: MTLBuffer
+    var scene: RenderScene
+    var mesh: TriangleMesh
 
     init(_ parent: ContentView) {
         
@@ -35,12 +36,9 @@ class Renderer: NSObject, MTKViewDelegate {
             fatalError()
         }
 
-        let vertices = [
-            Vertex(position: [-1, -1], color: [1, 0, 0, 1]),
-            Vertex(position: [1, -1], color: [0, 1, 0, 1]),
-            Vertex(position: [0, 1], color: [0, 0, 1, 1])
-        ]
-        vertexBuffer = metalDevice.makeBuffer(bytes: vertices, length: vertices.count * MemoryLayout<Vertex>.stride, options: [])!
+        mesh = TriangleMesh(metalDevice: metalDevice)
+        scene = RenderScene()
+
         super.init()
     }
 
@@ -49,6 +47,8 @@ class Renderer: NSObject, MTKViewDelegate {
     }
     
     func draw(in view: MTKView) {
+
+        scene.update()
 
         guard let drawable = view.currentDrawable else {
             return
@@ -63,9 +63,16 @@ class Renderer: NSObject, MTKViewDelegate {
 
         let renderEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor!)
 
-        renderEncoder?.setRenderPipelineState(pipelineState)
-        renderEncoder?.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-        renderEncoder?.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
+        for triangle in scene.triangles {
+            var modelMatrix: matrix_float4x4 = Matrix44.create_from_rotation(eulers: triangle.eulers)
+            modelMatrix = Matrix44.create_from_translation(translation: triangle.position) * modelMatrix;
+            renderEncoder?.setVertexBytes(&modelMatrix, length: MemoryLayout<matrix_float4x4>.stride, index: 1)
+
+            renderEncoder?.setRenderPipelineState(pipelineState)
+            renderEncoder?.setVertexBuffer(mesh.vertexBuffer, offset: 0, index: 0)
+            renderEncoder?.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
+        }
+
 
         renderEncoder?.endEncoding()
 

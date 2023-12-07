@@ -27,6 +27,7 @@ struct ContentView: NSViewRepresentable {
 
         mtkView.framebufferOnly = false
         mtkView.drawableSize = mtkView.frame.size
+        mtkView.isPaused = false
 
         return mtkView
     }

@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		CA32D4112B20EE380016EFDE /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32D4102B20EE380016EFDE /* Renderer.swift */; };
 		CA32D4142B21037B0016EFDE /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CA32D4132B21037B0016EFDE /* Shaders.metal */; };
+		CA8C287F2B22518E00A6191E /* TriangleMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8C287E2B22518D00A6191E /* TriangleMesh.swift */; };
+		CA8C28822B22538000A6191E /* RenderScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8C28812B22538000A6191E /* RenderScene.swift */; };
+		CA8C28842B22593F00A6191E /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8C28832B22593F00A6191E /* Camera.swift */; };
+		CA8C28862B225A2A00A6191E /* SimpleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8C28852B225A2A00A6191E /* SimpleComponent.swift */; };
+		CA8C28882B225DD600A6191E /* LinearAlgebro.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8C28872B225DD500A6191E /* LinearAlgebro.swift */; };
 		CA8D61C82B0D31C600804A07 /* MetalimApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D61C72B0D31C600804A07 /* MetalimApp.swift */; };
 		CA8D61CA2B0D31C600804A07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D61C92B0D31C600804A07 /* ContentView.swift */; };
 		CA8D61CC2B0D31C800804A07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8D61CB2B0D31C800804A07 /* Assets.xcassets */; };
@@ -19,6 +24,11 @@
 		CA32D4102B20EE380016EFDE /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		CA32D4122B2101020016EFDE /* definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = definitions.h; sourceTree = "<group>"; };
 		CA32D4132B21037B0016EFDE /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		CA8C287E2B22518D00A6191E /* TriangleMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleMesh.swift; sourceTree = "<group>"; };
+		CA8C28812B22538000A6191E /* RenderScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderScene.swift; sourceTree = "<group>"; };
+		CA8C28832B22593F00A6191E /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		CA8C28852B225A2A00A6191E /* SimpleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleComponent.swift; sourceTree = "<group>"; };
+		CA8C28872B225DD500A6191E /* LinearAlgebro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearAlgebro.swift; sourceTree = "<group>"; };
 		CA8D61C42B0D31C600804A07 /* Metalim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metalim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8D61C72B0D31C600804A07 /* MetalimApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalimApp.swift; sourceTree = "<group>"; };
 		CA8D61C92B0D31C600804A07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +48,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA8C28802B22536600A6191E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA8C28812B22538000A6191E /* RenderScene.swift */,
+				CA8C28832B22593F00A6191E /* Camera.swift */,
+				CA8C28852B225A2A00A6191E /* SimpleComponent.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA8C28892B225FC500A6191E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA8D61C72B0D31C600804A07 /* MetalimApp.swift */,
+				CA32D4102B20EE380016EFDE /* Renderer.swift */,
+				CA8C287E2B22518D00A6191E /* TriangleMesh.swift */,
+				CA8D61C92B0D31C600804A07 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CA8D61BB2B0D31C600804A07 = {
 			isa = PBXGroup;
 			children = (
@@ -57,10 +88,10 @@
 		CA8D61C62B0D31C600804A07 /* Metalim */ = {
 			isa = PBXGroup;
 			children = (
-				CA8D61C72B0D31C600804A07 /* MetalimApp.swift */,
-				CA32D4102B20EE380016EFDE /* Renderer.swift */,
+				CA8C28892B225FC500A6191E /* View */,
+				CA8C28872B225DD500A6191E /* LinearAlgebro.swift */,
+				CA8C28802B22536600A6191E /* Model */,
 				CA32D4132B21037B0016EFDE /* Shaders.metal */,
-				CA8D61C92B0D31C600804A07 /* ContentView.swift */,
 				CA32D4122B2101020016EFDE /* definitions.h */,
 				CA8D61CB2B0D31C800804A07 /* Assets.xcassets */,
 				CA8D61D02B0D31C800804A07 /* Metalim.entitlements */,
@@ -148,8 +179,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA32D4142B21037B0016EFDE /* Shaders.metal in Sources */,
+				CA8C287F2B22518E00A6191E /* TriangleMesh.swift in Sources */,
+				CA8C28822B22538000A6191E /* RenderScene.swift in Sources */,
 				CA8D61CA2B0D31C600804A07 /* ContentView.swift in Sources */,
 				CA32D4112B20EE380016EFDE /* Renderer.swift in Sources */,
+				CA8C28862B225A2A00A6191E /* SimpleComponent.swift in Sources */,
+				CA8C28842B22593F00A6191E /* Camera.swift in Sources */,
+				CA8C28882B225DD600A6191E /* LinearAlgebro.swift in Sources */,
 				CA8D61C82B0D31C600804A07 /* MetalimApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
