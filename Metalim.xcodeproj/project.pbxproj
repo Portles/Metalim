@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA32D4112B20EE380016EFDE /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32D4102B20EE380016EFDE /* Renderer.swift */; };
+		CA32D4142B21037B0016EFDE /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CA32D4132B21037B0016EFDE /* Shaders.metal */; };
 		CA8D61C82B0D31C600804A07 /* MetalimApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D61C72B0D31C600804A07 /* MetalimApp.swift */; };
 		CA8D61CA2B0D31C600804A07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D61C92B0D31C600804A07 /* ContentView.swift */; };
 		CA8D61CC2B0D31C800804A07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8D61CB2B0D31C800804A07 /* Assets.xcassets */; };
@@ -14,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA32D4102B20EE380016EFDE /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		CA32D4122B2101020016EFDE /* definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = definitions.h; sourceTree = "<group>"; };
+		CA32D4132B21037B0016EFDE /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		CA8D61C42B0D31C600804A07 /* Metalim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Metalim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8D61C72B0D31C600804A07 /* MetalimApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalimApp.swift; sourceTree = "<group>"; };
 		CA8D61C92B0D31C600804A07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,7 +58,10 @@
 			isa = PBXGroup;
 			children = (
 				CA8D61C72B0D31C600804A07 /* MetalimApp.swift */,
+				CA32D4102B20EE380016EFDE /* Renderer.swift */,
+				CA32D4132B21037B0016EFDE /* Shaders.metal */,
 				CA8D61C92B0D31C600804A07 /* ContentView.swift */,
+				CA32D4122B2101020016EFDE /* definitions.h */,
 				CA8D61CB2B0D31C800804A07 /* Assets.xcassets */,
 				CA8D61D02B0D31C800804A07 /* Metalim.entitlements */,
 				CA8D61CD2B0D31C800804A07 /* Preview Content */,
@@ -139,7 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA32D4142B21037B0016EFDE /* Shaders.metal in Sources */,
 				CA8D61CA2B0D31C600804A07 /* ContentView.swift in Sources */,
+				CA32D4112B20EE380016EFDE /* Renderer.swift in Sources */,
 				CA8D61C82B0D31C600804A07 /* MetalimApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nizo.Metalim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = Metalim/definitions.h;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -315,6 +326,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nizo.Metalim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = Metalim/definitions.h;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
