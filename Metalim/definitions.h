@@ -15,4 +15,9 @@ struct Vertex {
     vector_float4 color;
 };
 
+struct CameraParameters {
+    matrix_float4x4 view;
+    matrix_float4x4 projection;
+};
+
 #endif /* definitions_h */
