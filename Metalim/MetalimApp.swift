@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct MetalimApp: App {
+
+    @StateObject private var gameScene = GameScene()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppView()
+                .environmentObject(gameScene)
         }
     }
 }

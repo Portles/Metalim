@@ -14,11 +14,11 @@ class Renderer: NSObject, MTKViewDelegate {
     var metalComandQueue: MTLCommandQueue!
     var allocator: MTKMeshBufferAllocator
     let pipelineState: MTLRenderPipelineState
-    var scene: RenderScene
+    var scene: GameScene
     var mesh: ObjMesh
 
-    init(_ parent: ContentView) {
-        
+    init(_ parent: ContentView, scene: GameScene) {
+
         self.parent = parent
         if let metalDevice = MTLCreateSystemDefaultDevice() {
             self.metalDevice = metalDevice
@@ -41,7 +41,7 @@ class Renderer: NSObject, MTKViewDelegate {
             fatalError()
         }
 
-        scene = RenderScene()
+        self.scene = scene
 
         super.init()
     }

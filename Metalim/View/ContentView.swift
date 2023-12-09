@@ -10,8 +10,10 @@ import MetalKit
 
 struct ContentView: NSViewRepresentable {
 
+    @EnvironmentObject var gameScene: GameScene
+
     func makeCoordinator() -> Renderer {
-        Renderer(self)
+        Renderer(self, scene: gameScene)
     }
 
     func makeNSView(context: NSViewRepresentableContext<ContentView>) -> MTKView {
