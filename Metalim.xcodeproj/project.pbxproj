@@ -22,6 +22,8 @@
 		CA8D61CC2B0D31C800804A07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8D61CB2B0D31C800804A07 /* Assets.xcassets */; };
 		CA8D61CF2B0D31C800804A07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8D61CE2B0D31C800804A07 /* Preview Assets.xcassets */; };
 		CAF71BEC2B24BC9900B6665F /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF71BEB2B24BC9900B6665F /* AppView.swift */; };
+		CAF71BEE2B24FF6600B6665F /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF71BED2B24FF6600B6665F /* Material.swift */; };
+		CAF71BF22B2507C200B6665F /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = CAF71BF12B2507C200B6665F /* texture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		CA8D61CE2B0D31C800804A07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA8D61D02B0D31C800804A07 /* Metalim.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Metalim.entitlements; sourceTree = "<group>"; };
 		CAF71BEB2B24BC9900B6665F /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		CAF71BED2B24FF6600B6665F /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
+		CAF71BF12B2507C200B6665F /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 		CA6750422B23989A0060EB9C /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				CAF71BF12B2507C200B6665F /* texture.png */,
 				CA67503F2B2398910060EB9C /* cube.mtl */,
 				CA67503E2B2398910060EB9C /* cube.obj */,
 			);
@@ -82,6 +87,7 @@
 				CA8C287E2B22518D00A6191E /* TriangleMesh.swift */,
 				CA8D61C92B0D31C600804A07 /* ContentView.swift */,
 				CA67503C2B2388480060EB9C /* ObjMesh.swift */,
+				CAF71BED2B24FF6600B6665F /* Material.swift */,
 				CAF71BEB2B24BC9900B6665F /* AppView.swift */,
 			);
 			path = View;
@@ -189,6 +195,7 @@
 				CA6750402B2398910060EB9C /* cube.obj in Resources */,
 				CA8D61CF2B0D31C800804A07 /* Preview Assets.xcassets in Resources */,
 				CA6750412B2398910060EB9C /* cube.mtl in Resources */,
+				CAF71BF22B2507C200B6665F /* texture.png in Resources */,
 				CA8D61CC2B0D31C800804A07 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +211,7 @@
 				CA8C287F2B22518E00A6191E /* TriangleMesh.swift in Sources */,
 				CA8C28822B22538000A6191E /* GameScene.swift in Sources */,
 				CA8D61CA2B0D31C600804A07 /* ContentView.swift in Sources */,
+				CAF71BEE2B24FF6600B6665F /* Material.swift in Sources */,
 				CAF71BEC2B24BC9900B6665F /* AppView.swift in Sources */,
 				CA32D4112B20EE380016EFDE /* Renderer.swift in Sources */,
 				CA8C28862B225A2A00A6191E /* SimpleComponent.swift in Sources */,
