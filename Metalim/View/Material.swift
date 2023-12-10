@@ -16,25 +16,24 @@ class Material {
 
     init(device: MTLDevice, allocator: MTKTextureLoader, filename: String) {
 
-        guard let materialUrl = Bundle.main.url(forResource: filename, withExtension: "png") else {
-            fatalError()
-        }
-
-        let options: [MTKTextureLoader.Option : Any] = [
-            .SRGB: false
+        let options: [MTKTextureLoader.Option: Any] = [
+            .SRGB: false,
+            .generateMipmaps: true
         ]
 
         do {
-            texture = try allocator.newTexture(URL: materialUrl, options: options)
+            texture = try allocator.newTexture(name: filename, scaleFactor: 1.0, bundle: Bundle.main, options: options)
         } catch {
-            fatalError("Couldn't load mesh.")
+            fatalError("couldn't load mesh")
         }
 
         let samplerDescriptor = MTLSamplerDescriptor()
         samplerDescriptor.sAddressMode = .repeat
         samplerDescriptor.tAddressMode = .repeat
-        samplerDescriptor.minFilter = .nearest
         samplerDescriptor.magFilter = .linear
+        samplerDescriptor.minFilter = .nearest
+        samplerDescriptor.mipFilter = .linear
+        samplerDescriptor.maxAnisotropy = 8
 
         sampler = device.makeSamplerState(descriptor: samplerDescriptor)!
     }
