@@ -12,12 +12,12 @@ class GameScene: ObservableObject {
     @Published var player: Entity
     @Published var sun: Light
     @Published var spotlight: Light
+    @Published var billboard: Billboard
     @Published var cubes: [Entity]
     @Published var groundTiles: [Entity]
     @Published var pointLights: [Light]
 
     init() {
-
         groundTiles = []
         cubes = []
         pointLights = []
@@ -25,6 +25,9 @@ class GameScene: ObservableObject {
         let newPlayer = Entity()
         newPlayer.addCameraComponent(position: [-6.0, 6.0, 4.0], eulers: [0.0, 110.0, -45.0])
         player = newPlayer
+
+        let newBillboard = Billboard(position: [0.0, 0.0, 2.7])
+        billboard = newBillboard
 
         let newSpotlight = Light(color: [1.0, 0.0, 0.0])
         newSpotlight.declareSpotlight(position: [-2, 0.0, 3.0], eulers: [0.0, 0.0, 180.0], eulerVelocity: [0.0, 0.0, 45.0])
@@ -52,16 +55,19 @@ class GameScene: ObservableObject {
 
     }
 
+    func updateView() {
+        self.objectWillChange.send()
+    }
+
     func update() {
+
         player.update()
 
         for cube in cubes {
-
             cube.update()
         }
 
         for ground in groundTiles {
-
             ground.update()
         }
 
@@ -70,25 +76,16 @@ class GameScene: ObservableObject {
         for light in pointLights {
             light.update()
         }
+
+        billboard.update(viewwerPosition: player.position!)
+
+        updateView()
     }
 
-    func spinPlayer(offset: CGSize) {
-        let dTheta: Float = Float(offset.width)
-        let dPhi: Float = Float(offset.height)
+    func strafePlayer(offset: CGSize) {
+        let rightAmount: Float = Float(offset.width) / 1000
+        let upAmount: Float = Float(offset.height) / 1000
 
-        player.eulers!.z -= 0.001 * dTheta
-        player.eulers!.y += 0.001 * dPhi
-
-        if player.eulers!.z < 0 {
-            player.eulers!.z -= 360
-        } else if player.eulers!.z > 360 {
-            player.eulers!.z -= 360
-        }
-
-        if player.eulers!.y < 1 {
-            player.eulers!.y = 1
-        } else if player.eulers!.y > 179 {
-            player.eulers!.y = 179
-        }
+        player.stafe(rightAmount: rightAmount, upAmount: upAmount)
     }
 }

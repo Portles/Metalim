@@ -33,14 +33,14 @@ class Entity {
         self.hasTransformComponent = true
         self.position = position
         self.eulers = eulers
-        self.model = Matrix44.create_identity()
+        update()
     }
 
     func addCameraComponent(position: simd_float3, eulers: simd_float3) {
         self.hasCameraComponent = true
         self.position = position
         self.eulers = eulers
-        self.view = Matrix44.create_identity()
+        update()
     }
 
     func addLightComponent(eulers: vector_float3, color: simd_float3) {
@@ -48,6 +48,18 @@ class Entity {
         self.color = color
         self.eulers = eulers
         self.lightType = DIRECTIONAL
+    }
+
+    func stafe(rightAmount: Float, upAmount: Float) {
+        position = position! + rightAmount * right! + upAmount * up!
+
+        let distance: Float = simd.length(position!)
+
+        moveForwards(amount: distance - 10.0)
+    }
+
+    func moveForwards(amount: Float) {
+        position = position! + amount * forwards!
     }
 
     func update() {
@@ -58,11 +70,7 @@ class Entity {
         }
 
         if hasCameraComponent {
-            forwards = [
-                cos(eulers![2] * .pi / 180.0) * sin(eulers![1] * .pi / 180.0),
-                sin(eulers![2] * .pi / 180.0) * sin(eulers![1] * .pi / 180.0),
-                cos(eulers![1] * .pi / 180.0)
-            ]
+            forwards = simd.normalize([0,0,0] - position!)
 
             let globalUp: vector_float3 = [0.0, 0.0, 1.0]
 
@@ -70,7 +78,7 @@ class Entity {
 
             up = simd.normalize(simd.cross(forwards!, right!))
 
-            view = Matrix44.create_lookat(eye: position!, target: position! + forwards!, up: up!)
+            view = Matrix44.create_lookat(eye: position!, target: [0,0,0] + forwards!, up: up!)
         }
 
         if hasLightComponent {

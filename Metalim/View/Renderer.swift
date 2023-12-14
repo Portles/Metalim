@@ -13,7 +13,7 @@ class Renderer: NSObject, MTKViewDelegate {
     var metalDevice: MTLDevice!
     var metalCommandQueue: MTLCommandQueue!
 
-    let allocator: MTKMeshBufferAllocator
+    let meshAllocator: MTKMeshBufferAllocator
     let materialLoader: MTKTextureLoader
 
     let pipelineState: MTLRenderPipelineState
@@ -22,8 +22,11 @@ class Renderer: NSObject, MTKViewDelegate {
     var scene: GameScene
     var cubeMesh: ObjMesh
     var groundMesh: ObjMesh
+    let billboardMesh: ObjMesh
+
     let artMaterial: Material
     let woodMaterial: Material
+    let billboardMaterial: Material
 
     init(_ parent: ContentView, scene: GameScene) {
 
@@ -33,19 +36,26 @@ class Renderer: NSObject, MTKViewDelegate {
         }
         self.metalCommandQueue = metalDevice.makeCommandQueue()
 
-        self.allocator = MTKMeshBufferAllocator(device: metalDevice)
+        self.meshAllocator = MTKMeshBufferAllocator(device: metalDevice)
         self.materialLoader = MTKTextureLoader(device: metalDevice)
 
-        cubeMesh = ObjMesh(device: metalDevice, allocator: allocator, filename: "cube")
-        groundMesh = ObjMesh(device: metalDevice, allocator: allocator, filename: "ground")
+        cubeMesh = ObjMesh(device: metalDevice, allocator: meshAllocator, filename: "cube")
+        groundMesh = ObjMesh(device: metalDevice, allocator: meshAllocator, filename: "ground")
+        billboardMesh = ObjMesh(device: metalDevice, allocator: meshAllocator, filename: "mouse")
+
         artMaterial = Material(device: metalDevice, allocator: materialLoader, filename: "texture")
         woodMaterial = Material(device: metalDevice, allocator: materialLoader, filename: "memed")
+        billboardMaterial = Material(device: metalDevice, allocator: materialLoader, filename: "maus")
 
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         let library = metalDevice.makeDefaultLibrary()
         pipelineDescriptor.vertexFunction = library?.makeFunction(name: "vertexShader")
         pipelineDescriptor.fragmentFunction = library?.makeFunction(name: "fragmentShader")
         pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        pipelineDescriptor.colorAttachments[0].isBlendingEnabled = true
+        pipelineDescriptor.colorAttachments[0].alphaBlendOperation = .add
+        pipelineDescriptor.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
+        pipelineDescriptor.colorAttachments[0].sourceAlphaBlendFactor = .sourceAlpha
         pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(cubeMesh.metalMesh.vertexDescriptor)
         pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
 
@@ -88,13 +98,39 @@ class Renderer: NSObject, MTKViewDelegate {
         renderEncoder?.setRenderPipelineState(pipelineState)
         renderEncoder?.setDepthStencilState(depthStencilState)
 
+        sendCamerData(renderEncoder: renderEncoder)
+
+        sendLightData(renderEncoder: renderEncoder)
+
+        armForDrawing(renderEncoder: renderEncoder, mesh: cubeMesh, material: artMaterial)
+        for cube in scene.cubes {
+            draw(renderEncoder: renderEncoder, mesh: cubeMesh, modelTransform: &(cube.model!))
+        }
+        
+        armForDrawing(renderEncoder: renderEncoder, mesh: groundMesh, material: woodMaterial)
+        for ground in scene.groundTiles {
+            draw(renderEncoder: renderEncoder, mesh: groundMesh, modelTransform: &(ground.model!))
+        }
+
+        armForDrawing(renderEncoder: renderEncoder, mesh: billboardMesh, material: billboardMaterial)
+        draw(renderEncoder: renderEncoder, mesh: billboardMesh, modelTransform: &(scene.billboard.model))
+
+        renderEncoder?.endEncoding()
+
+        commandBuffer?.present(drawable)
+        commandBuffer?.commit()
+    }
+
+    func sendCamerData(renderEncoder: MTLRenderCommandEncoder?) {
         var cameraData: CameraParameters = CameraParameters()
         cameraData.view = scene.player.view!
         cameraData.projection = Matrix44.create_perspective_projection(
             fovy: 45, aspect: 800/600, near: 0.1, far: 20
         )
         renderEncoder?.setVertexBytes(&cameraData, length: MemoryLayout<CameraParameters>.stride, index: 2)
+    }
 
+    func sendLightData(renderEncoder: MTLRenderCommandEncoder?) {
         var sun: DirectionalLight = DirectionalLight()
         sun.forwards = scene.sun.forwards!
         sun.color = scene.sun.color
@@ -115,42 +151,23 @@ class Renderer: NSObject, MTKViewDelegate {
         var fragUBO: FragmentData = FragmentData()
         fragUBO.lightCount = UInt32(scene.pointLights.count)
         renderEncoder?.setFragmentBytes(&fragUBO, length: MemoryLayout<FragmentData>.stride, index: 3)
+    }
 
-        renderEncoder?.setVertexBuffer(cubeMesh.metalMesh.vertexBuffers[0].buffer, offset: 0, index: 0)
-        renderEncoder?.setFragmentTexture(artMaterial.texture, index: 0)
-        renderEncoder?.setFragmentSamplerState(artMaterial.sampler, index: 0)
-        for cube in scene.cubes {
+    func armForDrawing(renderEncoder: MTLRenderCommandEncoder?, mesh: ObjMesh, material: Material) {
+        renderEncoder?.setVertexBuffer(mesh.metalMesh.vertexBuffers[0].buffer, offset: 0, index: 0)
+        renderEncoder?.setFragmentTexture(material.texture, index: 0)
+        renderEncoder?.setFragmentSamplerState(material.sampler, index: 0)
+    }
 
-            renderEncoder?.setVertexBytes(&(cube.model!), length: MemoryLayout<matrix_float4x4>.stride, index: 1)
+    func draw(renderEncoder: MTLRenderCommandEncoder?, mesh: ObjMesh, modelTransform: UnsafeMutablePointer<matrix_float4x4>) {
+        renderEncoder?.setVertexBytes(modelTransform, length: MemoryLayout<matrix_float4x4>.stride, index: 1)
 
-            for submesh in cubeMesh.metalMesh.submeshes {
-                renderEncoder?.drawIndexedPrimitives(
-                    type: .triangle, indexCount: submesh.indexCount,
-                    indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer,
-                    indexBufferOffset: submesh.indexBuffer.offset
-                )
-            }
+        for submesh in mesh.metalMesh.submeshes {
+            renderEncoder?.drawIndexedPrimitives(
+                type: .triangle, indexCount: submesh.indexCount,
+                indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer,
+                indexBufferOffset: submesh.indexBuffer.offset
+            )
         }
-
-        renderEncoder?.setVertexBuffer(groundMesh.metalMesh.vertexBuffers[0].buffer, offset: 0, index: 0)
-        renderEncoder?.setFragmentTexture(woodMaterial.texture, index: 0)
-        renderEncoder?.setFragmentSamplerState(woodMaterial.sampler, index: 0)
-        for ground in scene.groundTiles {
-
-            renderEncoder?.setVertexBytes(&(ground.model!), length: MemoryLayout<matrix_float4x4>.stride, index: 1)
-
-            for submesh in groundMesh.metalMesh.submeshes {
-                renderEncoder?.drawIndexedPrimitives(
-                    type: .triangle, indexCount: submesh.indexCount,
-                    indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer,
-                    indexBufferOffset: submesh.indexBuffer.offset
-                )
-            }
-        }
-
-        renderEncoder?.endEncoding()
-
-        commandBuffer?.present(drawable)
-        commandBuffer?.commit()
     }
 }

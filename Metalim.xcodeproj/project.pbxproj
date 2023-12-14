@@ -26,6 +26,10 @@
 		CAA5A82F2B264E450040AD97 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA5A82D2B264E450040AD97 /* texture.png */; };
 		CAA5A8302B264E450040AD97 /* memed.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA5A82E2B264E450040AD97 /* memed.png */; };
 		CAA5A8322B26570C0040AD97 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA5A8312B26570C0040AD97 /* Light.swift */; };
+		CAAE84AD2B2B82A0004851AD /* mouse.obj in Resources */ = {isa = PBXBuildFile; fileRef = CAAE84AB2B2B82A0004851AD /* mouse.obj */; };
+		CAAE84AE2B2B82A0004851AD /* mouse.mtl in Resources */ = {isa = PBXBuildFile; fileRef = CAAE84AC2B2B82A0004851AD /* mouse.mtl */; };
+		CAAE84B02B2B82B9004851AD /* maus.png in Resources */ = {isa = PBXBuildFile; fileRef = CAAE84AF2B2B82B9004851AD /* maus.png */; };
+		CAAE84B22B2B82E4004851AD /* Billboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE84B12B2B82E4004851AD /* Billboard.swift */; };
 		CAF71BEC2B24BC9900B6665F /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF71BEB2B24BC9900B6665F /* AppView.swift */; };
 		CAF71BEE2B24FF6600B6665F /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF71BED2B24FF6600B6665F /* Material.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +57,10 @@
 		CAA5A82D2B264E450040AD97 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
 		CAA5A82E2B264E450040AD97 /* memed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = memed.png; sourceTree = "<group>"; };
 		CAA5A8312B26570C0040AD97 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		CAAE84AB2B2B82A0004851AD /* mouse.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mouse.obj; sourceTree = "<group>"; };
+		CAAE84AC2B2B82A0004851AD /* mouse.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mouse.mtl; sourceTree = "<group>"; };
+		CAAE84AF2B2B82B9004851AD /* maus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maus.png; sourceTree = "<group>"; };
+		CAAE84B12B2B82E4004851AD /* Billboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Billboard.swift; sourceTree = "<group>"; };
 		CAF71BEB2B24BC9900B6665F /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		CAF71BED2B24FF6600B6665F /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +81,9 @@
 			children = (
 				CAA5A82E2B264E450040AD97 /* memed.png */,
 				CAA5A82D2B264E450040AD97 /* texture.png */,
+				CAAE84AF2B2B82B9004851AD /* maus.png */,
+				CAAE84AC2B2B82A0004851AD /* mouse.mtl */,
+				CAAE84AB2B2B82A0004851AD /* mouse.obj */,
 				CAA5A8282B25AC6B0040AD97 /* ground.mtl */,
 				CAA5A8272B25AC6B0040AD97 /* ground.obj */,
 				CA67503F2B2398910060EB9C /* cube.mtl */,
@@ -89,6 +100,7 @@
 				CA8C28852B225A2A00A6191E /* SimpleComponent.swift */,
 				CAA5A8252B25A36C0040AD97 /* Entity.swift */,
 				CAA5A8312B26570C0040AD97 /* Light.swift */,
+				CAAE84B12B2B82E4004851AD /* Billboard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,9 +217,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA6750402B2398910060EB9C /* cube.obj in Resources */,
+				CAAE84AE2B2B82A0004851AD /* mouse.mtl in Resources */,
 				CAA5A82F2B264E450040AD97 /* texture.png in Resources */,
+				CAAE84AD2B2B82A0004851AD /* mouse.obj in Resources */,
 				CAA5A82A2B25AC6B0040AD97 /* ground.mtl in Resources */,
 				CA8D61CF2B0D31C800804A07 /* Preview Assets.xcassets in Resources */,
+				CAAE84B02B2B82B9004851AD /* maus.png in Resources */,
 				CAA5A8302B264E450040AD97 /* memed.png in Resources */,
 				CA6750412B2398910060EB9C /* cube.mtl in Resources */,
 				CAA5A8292B25AC6B0040AD97 /* ground.obj in Resources */,
@@ -233,6 +248,7 @@
 				CA8C28862B225A2A00A6191E /* SimpleComponent.swift in Sources */,
 				CA8C28842B22593F00A6191E /* Camera.swift in Sources */,
 				CA8C28882B225DD600A6191E /* LinearAlgebro.swift in Sources */,
+				CAAE84B22B2B82E4004851AD /* Billboard.swift in Sources */,
 				CA67503D2B2388480060EB9C /* ObjMesh.swift in Sources */,
 				CA8D61C82B0D31C600804A07 /* MetalimApp.swift in Sources */,
 			);
