@@ -14,15 +14,18 @@ class Material {
     let texture: MTLTexture
     let sampler: MTLSamplerState
 
-    init(device: MTLDevice, allocator: MTKTextureLoader, filename: String) {
+    init(device: MTLDevice, allocator: MTKTextureLoader, filename: String, filenameExtension: String) {
 
         let options: [MTKTextureLoader.Option: Any] = [
             .SRGB: false,
             .generateMipmaps: true
         ]
 
+        guard let materialURL = Bundle.main.url(forResource: filename, withExtension: filenameExtension) else {
+            fatalError()
+        }
         do {
-            texture = try allocator.newTexture(name: filename, scaleFactor: 1.0, bundle: Bundle.main, options: options)
+            texture = try allocator.newTexture(URL: materialURL, options: options)
         } catch {
             fatalError("couldn't load mesh")
         }

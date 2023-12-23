@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		CA32D4112B20EE380016EFDE /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32D4102B20EE380016EFDE /* Renderer.swift */; };
 		CA32D4142B21037B0016EFDE /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CA32D4132B21037B0016EFDE /* Shaders.metal */; };
+		CA495CA02B37324900D6A5E3 /* light.mtl in Resources */ = {isa = PBXBuildFile; fileRef = CA495C9E2B37324900D6A5E3 /* light.mtl */; };
+		CA495CA12B37324900D6A5E3 /* light.obj in Resources */ = {isa = PBXBuildFile; fileRef = CA495C9F2B37324900D6A5E3 /* light.obj */; };
+		CA495CA32B37326B00D6A5E3 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = CA495CA22B37326B00D6A5E3 /* star.png */; };
+		CA495CA52B3732EA00D6A5E3 /* BrightBillBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA495CA42B3732EA00D6A5E3 /* BrightBillBoard.swift */; };
+		CA495CA72B3754D700D6A5E3 /* UnlitShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CA495CA62B3754D700D6A5E3 /* UnlitShaders.metal */; };
+		CA495CA92B376F7300D6A5E3 /* PipelineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA495CA82B376F7300D6A5E3 /* PipelineBuilder.swift */; };
 		CA67503D2B2388480060EB9C /* ObjMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA67503C2B2388480060EB9C /* ObjMesh.swift */; };
 		CA6750402B2398910060EB9C /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = CA67503E2B2398910060EB9C /* cube.obj */; };
 		CA6750412B2398910060EB9C /* cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = CA67503F2B2398910060EB9C /* cube.mtl */; };
@@ -38,6 +44,12 @@
 		CA32D4102B20EE380016EFDE /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		CA32D4122B2101020016EFDE /* definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = definitions.h; sourceTree = "<group>"; };
 		CA32D4132B21037B0016EFDE /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		CA495C9E2B37324900D6A5E3 /* light.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light.mtl; sourceTree = "<group>"; };
+		CA495C9F2B37324900D6A5E3 /* light.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light.obj; sourceTree = "<group>"; };
+		CA495CA22B37326B00D6A5E3 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		CA495CA42B3732EA00D6A5E3 /* BrightBillBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightBillBoard.swift; sourceTree = "<group>"; };
+		CA495CA62B3754D700D6A5E3 /* UnlitShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = UnlitShaders.metal; sourceTree = "<group>"; };
+		CA495CA82B376F7300D6A5E3 /* PipelineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineBuilder.swift; sourceTree = "<group>"; };
 		CA67503C2B2388480060EB9C /* ObjMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjMesh.swift; sourceTree = "<group>"; };
 		CA67503E2B2398910060EB9C /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		CA67503F2B2398910060EB9C /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.mtl; sourceTree = "<group>"; };
@@ -82,6 +94,9 @@
 				CAA5A82E2B264E450040AD97 /* memed.png */,
 				CAA5A82D2B264E450040AD97 /* texture.png */,
 				CAAE84AF2B2B82B9004851AD /* maus.png */,
+				CA495CA22B37326B00D6A5E3 /* star.png */,
+				CA495C9E2B37324900D6A5E3 /* light.mtl */,
+				CA495C9F2B37324900D6A5E3 /* light.obj */,
 				CAAE84AC2B2B82A0004851AD /* mouse.mtl */,
 				CAAE84AB2B2B82A0004851AD /* mouse.obj */,
 				CAA5A8282B25AC6B0040AD97 /* ground.mtl */,
@@ -101,6 +116,7 @@
 				CAA5A8252B25A36C0040AD97 /* Entity.swift */,
 				CAA5A8312B26570C0040AD97 /* Light.swift */,
 				CAAE84B12B2B82E4004851AD /* Billboard.swift */,
+				CA495CA42B3732EA00D6A5E3 /* BrightBillBoard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -112,6 +128,7 @@
 				CA8D61C92B0D31C600804A07 /* ContentView.swift */,
 				CA67503C2B2388480060EB9C /* ObjMesh.swift */,
 				CAF71BED2B24FF6600B6665F /* Material.swift */,
+				CA495CA82B376F7300D6A5E3 /* PipelineBuilder.swift */,
 				CAF71BEB2B24BC9900B6665F /* AppView.swift */,
 			);
 			path = View;
@@ -142,6 +159,7 @@
 				CA8C28802B22536600A6191E /* Model */,
 				CA8C28872B225DD500A6191E /* LinearAlgebro.swift */,
 				CA32D4132B21037B0016EFDE /* Shaders.metal */,
+				CA495CA62B3754D700D6A5E3 /* UnlitShaders.metal */,
 				CA32D4122B2101020016EFDE /* definitions.h */,
 				CA8D61CB2B0D31C800804A07 /* Assets.xcassets */,
 				CA8D61D02B0D31C800804A07 /* Metalim.entitlements */,
@@ -219,12 +237,15 @@
 				CA6750402B2398910060EB9C /* cube.obj in Resources */,
 				CAAE84AE2B2B82A0004851AD /* mouse.mtl in Resources */,
 				CAA5A82F2B264E450040AD97 /* texture.png in Resources */,
+				CA495CA12B37324900D6A5E3 /* light.obj in Resources */,
 				CAAE84AD2B2B82A0004851AD /* mouse.obj in Resources */,
 				CAA5A82A2B25AC6B0040AD97 /* ground.mtl in Resources */,
 				CA8D61CF2B0D31C800804A07 /* Preview Assets.xcassets in Resources */,
 				CAAE84B02B2B82B9004851AD /* maus.png in Resources */,
 				CAA5A8302B264E450040AD97 /* memed.png in Resources */,
+				CA495CA02B37324900D6A5E3 /* light.mtl in Resources */,
 				CA6750412B2398910060EB9C /* cube.mtl in Resources */,
+				CA495CA32B37326B00D6A5E3 /* star.png in Resources */,
 				CAA5A8292B25AC6B0040AD97 /* ground.obj in Resources */,
 				CA8D61CC2B0D31C800804A07 /* Assets.xcassets in Resources */,
 			);
@@ -239,6 +260,7 @@
 			files = (
 				CA32D4142B21037B0016EFDE /* Shaders.metal in Sources */,
 				CAA5A8262B25A36C0040AD97 /* Entity.swift in Sources */,
+				CA495CA92B376F7300D6A5E3 /* PipelineBuilder.swift in Sources */,
 				CA8C28822B22538000A6191E /* GameScene.swift in Sources */,
 				CA8D61CA2B0D31C600804A07 /* ContentView.swift in Sources */,
 				CAF71BEE2B24FF6600B6665F /* Material.swift in Sources */,
@@ -246,8 +268,10 @@
 				CA32D4112B20EE380016EFDE /* Renderer.swift in Sources */,
 				CAA5A8322B26570C0040AD97 /* Light.swift in Sources */,
 				CA8C28862B225A2A00A6191E /* SimpleComponent.swift in Sources */,
+				CA495CA72B3754D700D6A5E3 /* UnlitShaders.metal in Sources */,
 				CA8C28842B22593F00A6191E /* Camera.swift in Sources */,
 				CA8C28882B225DD600A6191E /* LinearAlgebro.swift in Sources */,
+				CA495CA52B3732EA00D6A5E3 /* BrightBillBoard.swift in Sources */,
 				CAAE84B22B2B82E4004851AD /* Billboard.swift in Sources */,
 				CA67503D2B2388480060EB9C /* ObjMesh.swift in Sources */,
 				CA8D61C82B0D31C600804A07 /* MetalimApp.swift in Sources */,
