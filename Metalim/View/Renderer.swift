@@ -42,7 +42,7 @@ class Renderer: NSObject, MTKViewDelegate {
         self.meshAllocator = MTKMeshBufferAllocator(device: metalDevice)
         self.materialLoader = MTKTextureLoader(device: metalDevice)
 
-        cubeMesh = ObjMesh(device: metalDevice, allocator: meshAllocator, filename: "cube")
+        cubeMesh = ObjMesh(device: metalDevice, allocator: meshAllocator, filename: "silindir")
         groundMesh = ObjMesh(device: metalDevice, allocator: meshAllocator, filename: "ground")
         billboardMesh = ObjMesh(device: metalDevice, allocator: meshAllocator, filename: "mouse")
         lightMesh = ObjMesh(device: metalDevice, allocator: meshAllocator, filename: "light")
@@ -86,7 +86,7 @@ class Renderer: NSObject, MTKViewDelegate {
         let commandBuffer = metalCommandQueue.makeCommandBuffer()
 
         let renderPassDescriptor = view.currentRenderPassDescriptor
-        renderPassDescriptor?.colorAttachments[0].clearColor = MTLClearColorMake(0, 0.5, 0.5, 1.0)
+        renderPassDescriptor?.colorAttachments[0].clearColor = MTLClearColorMake(0, 0.0, 0.0, 0.0)
         renderPassDescriptor?.colorAttachments[0].loadAction = .clear
         renderPassDescriptor?.colorAttachments[0].storeAction = .store
 

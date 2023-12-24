@@ -15,6 +15,8 @@
 		CA495CA52B3732EA00D6A5E3 /* BrightBillBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA495CA42B3732EA00D6A5E3 /* BrightBillBoard.swift */; };
 		CA495CA72B3754D700D6A5E3 /* UnlitShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CA495CA62B3754D700D6A5E3 /* UnlitShaders.metal */; };
 		CA495CA92B376F7300D6A5E3 /* PipelineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA495CA82B376F7300D6A5E3 /* PipelineBuilder.swift */; };
+		CA495CAC2B38096100D6A5E3 /* silindir.mtl in Resources */ = {isa = PBXBuildFile; fileRef = CA495CAA2B38096100D6A5E3 /* silindir.mtl */; };
+		CA495CAD2B38096100D6A5E3 /* silindir.obj in Resources */ = {isa = PBXBuildFile; fileRef = CA495CAB2B38096100D6A5E3 /* silindir.obj */; };
 		CA67503D2B2388480060EB9C /* ObjMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA67503C2B2388480060EB9C /* ObjMesh.swift */; };
 		CA6750402B2398910060EB9C /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = CA67503E2B2398910060EB9C /* cube.obj */; };
 		CA6750412B2398910060EB9C /* cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = CA67503F2B2398910060EB9C /* cube.mtl */; };
@@ -50,6 +52,8 @@
 		CA495CA42B3732EA00D6A5E3 /* BrightBillBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightBillBoard.swift; sourceTree = "<group>"; };
 		CA495CA62B3754D700D6A5E3 /* UnlitShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = UnlitShaders.metal; sourceTree = "<group>"; };
 		CA495CA82B376F7300D6A5E3 /* PipelineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineBuilder.swift; sourceTree = "<group>"; };
+		CA495CAA2B38096100D6A5E3 /* silindir.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = silindir.mtl; sourceTree = "<group>"; };
+		CA495CAB2B38096100D6A5E3 /* silindir.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = silindir.obj; sourceTree = "<group>"; };
 		CA67503C2B2388480060EB9C /* ObjMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjMesh.swift; sourceTree = "<group>"; };
 		CA67503E2B2398910060EB9C /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		CA67503F2B2398910060EB9C /* cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.mtl; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				CAA5A8272B25AC6B0040AD97 /* ground.obj */,
 				CA67503F2B2398910060EB9C /* cube.mtl */,
 				CA67503E2B2398910060EB9C /* cube.obj */,
+				CA495CAA2B38096100D6A5E3 /* silindir.mtl */,
+				CA495CAB2B38096100D6A5E3 /* silindir.obj */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -237,10 +243,12 @@
 				CA6750402B2398910060EB9C /* cube.obj in Resources */,
 				CAAE84AE2B2B82A0004851AD /* mouse.mtl in Resources */,
 				CAA5A82F2B264E450040AD97 /* texture.png in Resources */,
+				CA495CAD2B38096100D6A5E3 /* silindir.obj in Resources */,
 				CA495CA12B37324900D6A5E3 /* light.obj in Resources */,
 				CAAE84AD2B2B82A0004851AD /* mouse.obj in Resources */,
 				CAA5A82A2B25AC6B0040AD97 /* ground.mtl in Resources */,
 				CA8D61CF2B0D31C800804A07 /* Preview Assets.xcassets in Resources */,
+				CA495CAC2B38096100D6A5E3 /* silindir.mtl in Resources */,
 				CAAE84B02B2B82B9004851AD /* maus.png in Resources */,
 				CAA5A8302B264E450040AD97 /* memed.png in Resources */,
 				CA495CA02B37324900D6A5E3 /* light.mtl in Resources */,
@@ -421,9 +429,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nizo.Metalim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = Metalim/definitions.h;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -449,9 +460,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nizo.Metalim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = Metalim/definitions.h;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

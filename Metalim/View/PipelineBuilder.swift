@@ -10,7 +10,7 @@ import MetalKit
 
 class PipelineBuilder {
     static func BuildPipeline(metalDevice: MTLDevice, library: MTLLibrary, vsEntry: String, fsEntry: String, vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {
-        
+
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         let library = metalDevice.makeDefaultLibrary()
         pipelineDescriptor.vertexFunction = library?.makeFunction(name: vsEntry)
